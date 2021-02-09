@@ -46,19 +46,10 @@ describe("GET /user/:username", () => {
             .expect(404)
             .then(response => {
                 expect(response.status).toEqual(404);
-                //expect(response.body.message).toEqual("User not found");
-                //var body = JSON.stringify(response.body);
-                
-                //expect(body).toEqual({
-                //    "code": 1,
-                //    "type": "error",
-                //    "message": "User not found"
-                //});
-                //var jsonMessage = jsonResponse.code;
-                //console.log(jsonMessage);
-                //expect(jsonResponse.status).toEqual(404);
+                expect(response.body.code).toEqual(1);
+                expect(response.body.type).toEqual("error");
+                expect(response.body.message).toEqual("User not found");
             });
-
     });
 });
 

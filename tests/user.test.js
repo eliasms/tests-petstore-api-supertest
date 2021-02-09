@@ -41,14 +41,18 @@ describe("GET /user/:username", () => {
 describe("GET /user/:username", () => {
     it("Search for invalid user and return 404", () => {
         var username="mr.mxyzptlk";
+        var responsePayload = {
+            code: 1,
+            type: "error",
+            message: "User not found"
+        }
+
         return request(ApiUrl)
             .get("/user/" + username)
             .expect(404)
             .then(response => {
                 expect(response.status).toEqual(404);
-                expect(response.body.code).toEqual(1);
-                expect(response.body.type).toEqual("error");
-                expect(response.body.message).toEqual("User not found");
+                expect(response.body).toEqual(responsePayload)
             });
     });
 });
